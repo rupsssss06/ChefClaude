@@ -3,15 +3,14 @@ export default function Form() {
   const [ingredients, setIngredients] = useState([]);
   const ingredientsItems = ingredients.map((ing) => <li key={ing}>{ing}</li>);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  function addIngredients(formData) {
     const newIng = formData.get("ingredient");
     setIngredients((prevIng) => [...prevIng, newIng]);
   }
+
   return (
     <main>
-      <form onSubmit={handleSubmit} className="add-ingredient-form">
+      <form action={addIngredients} className="add-ingredient-form">
         <input
           type="text"
           placeholder="e.g. oregano"
